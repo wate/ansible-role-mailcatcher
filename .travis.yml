@@ -2,19 +2,19 @@ language: python
 services: docker
 env:
   global:
-  - ROLE_NAME: mailcatcher
+    - ROLE_NAME: mailcatcher
 before_install:
-- sudo apt-get -qq update
+  - sudo apt-get -qq update
 install:
-- python3 -m pip install ansible
-- python3 -m pip install molecule[docker,lint]
+  - python3 -m pip install ansible
+  - python3 -m pip install molecule[docker,lint]
 before_script:
-- cd ../
-- git clone --depth=1 https://github.com/wate/ansible-role-ruby.git ruby
-- mv ansible-role-$ROLE_NAME $ROLE_NAME
-- cd $ROLE_NAME
+  - cd ../
+  - git clone --depth=1 https://github.com/wate/ansible-role-ruby.git ruby
+  - mv ansible-role-$ROLE_NAME $ROLE_NAME
+  - cd $ROLE_NAME
 script:
-- molecule test
+  - molecule test
 notifications:
   email: false
   slack:
