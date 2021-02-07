@@ -1,22 +1,21 @@
----
 language: python
 services: docker
 env:
   global:
-    - ROLE_NAME: mailcatcher
+  - ROLE_NAME: mailcatcher
 before_install:
-  - sudo apt-get -qq update
+- sudo apt-get -qq update
 install:
-  - python3 -m pip install ansible
-  - python3 -m pip install molecule[docker,lint]
+- python3 -m pip install ansible
+- python3 -m pip install molecule[docker,lint]
 before_script:
-  - cd ../
-  - git clone --depth=1 https://github.com/wate/ansible-role-ruby.git ruby
-  - mv ansible-role-$ROLE_NAME $ROLE_NAME
-  - cd $ROLE_NAME
+- cd ../
+- git clone --depth=1 https://github.com/wate/ansible-role-ruby.git ruby
+- mv ansible-role-$ROLE_NAME $ROLE_NAME
+- cd $ROLE_NAME
 script:
-  - molecule test
+- molecule test
 notifications:
   email: false
   slack:
-    secure: "execute `travis encrypt "<slack_name>:<token>" --add notifications.slack -x --no-interactive`"
+    secure: qtJJvGwwT967BYEMfromD5YSsH9YMkoXifWFfq/y28Sq7BDYIEFwJH60NkLkyIJA3OnB2DrGgB/ixemUI8EI29V5Z22QexvNK5lqTwXPk0lBIjmIaRsvlJMyaZ+Q/gmKsCjiBwCST+QP59xn7F8Iu5krmvzVES5i335VZMop+Ckc7HtkXPAAJnzVXI8gmi+IwSLFcNR+w4OdiZHj7VaxMZJUJFQrAfB58DMgtqAF8OZt5tBMCsK4xQZVCumPmpxtlR735tqgLHGaatBoeUPL/b0hZ8meF31Ddy8q2ZAtfBOS9U85YxtNWMxx4h9minEpo8eeeSGewsdi0j6tVMRtVHGYXZZxcueB9+flOR47ABVx9mRuQKOO6uD/J/vDmQX4nptU1lEjjzlFKCNDvRCp9ZY8oTTqE6EdSRLTu6HMQrJcrrapczxBxorRiwSdUI9ycA+0ArQGBGTsVQ9i+jsTfGJxwtyvIouhjwfdEu2F9hRsEhRL3wHn6bPX9J7ROPaiUqWGGkC6zzrDE+VpBSHeRxRdTfGkoKoC1BEfk857FquIwTXp3BT0ZAtjAuuD+3VtXzBQ2wPQ5xD/svB8qvniHzXh5RjaOO/Cc45KWpNB0Ks+bmuRXJH3/8pOt+l+da07aVlCnkzNmoTvAUIXgtRyW7O2wBnf5gk3QpNBUMzAJdY=
